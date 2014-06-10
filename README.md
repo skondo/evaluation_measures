@@ -21,4 +21,4 @@ Tetsuya Sakai. 2004. Ranking the NTCIR systems based on multigrade relevance. In
 
 ==================
 ## License
-evaluation_measures is BSD 2-Clause licensed 
+evaluation_measures is BSD 2-Clause licensed. 
