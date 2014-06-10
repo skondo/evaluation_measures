@@ -1,5 +1,5 @@
 #Copyright (c) 2014 Mitsuo YAMAMOTO(miyamamoto@d-itlab.co.jp)
-#                   Kato Makoto(kato@dl.kuis.kyoto-u.ac.jp)
+#                   Makoto Kato(kato@dl.kuis.kyoto-u.ac.jp)
 #
 #Permission is hereby granted, free of charge, to any person obtaining a copy
 #of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@ from numpy import log2
 from operator import div, add
 from itertools import izip
 
-
 # rr
 def rr(ss):
     i = 1
@@ -42,7 +41,7 @@ def mrr(scores):
         i = i + 1
     return result / i
 
-    # DCG (Microsoft version)
+# DCG (Microsoft version)
 def dcg(r, max = 10):
     result = sum([pow(2, rel) / log2((rank + 1) + 1)
         for rank, rel in enumerate(r[:min(len(r), max)])])
