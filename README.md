@@ -1,5 +1,5 @@
 ## About
-This repository has evaluation measures for IR systems. Following algorithm are implicated.
+Evaluation_measures is a framework that implements evaluation measures for IR systems. Following algorithm are implicated.
 
 * MRR (Mean Reciprocal Rank)
 
