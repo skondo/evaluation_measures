@@ -3,6 +3,8 @@ Evaluation_measures is a framework that implements evaluation measures for IR sy
 
 * MRR (Mean Reciprocal Rank)
 
+E.M. Voorhees (1999). "Proceedings of the 8th Text Retrieval Conference". TREC-8 Question Answering Track Report. pp. 77–82.
+
 * DCG (Discounted cumulative gain) and nDCG (Normalized Discounted cumulative gain)
 
 Kalervo Jarvelin, Jaana Kekalainen: Cumulated gain-based evaluation of IR techniques. ACM Transactions on Information Systems 20(4), 422–446 (2002)Cumulated gain-based evaluation of IR techniques
