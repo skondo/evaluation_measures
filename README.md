@@ -12,7 +12,6 @@ Kalervo Jarvelin, Jaana Kekalainen: Cumulated gain-based evaluation of IR techni
 * ERR (Expected Reciprocal Rank for Graded Relevance)
 
 Olivier Chapelle, Donald Metlzer, Ya Zhang, and Pierre Grinspan. 2009. Expected reciprocal rank for graded relevance. In Proceedings of the 18th ACM conference on Information and knowledge management (CIKM '09). ACM, New York, NY, USA, 621-630. DOI=10.1145/1645953.1646033 
-
 http://doi.acm.org/10.1145/1645953.1646033
 
 * session nDCG
