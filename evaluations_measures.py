@@ -26,19 +26,19 @@ from itertools import izip
 
 # rr
 def rr(ss):
-    i = 1
-    for s in ss:
+    for i, s in enumerate(ss):
+        i += 1
         if s == True:
             return 1.0 / float(i)
         else:
-            i = i + 1
+            pass
+
 # mrr
 def mrr(scores):
-    i = 1
-    result = 0
-    for score in scores:
-        result  = result + rr(score)
-        i = i + 1
+    result = 0.0
+    for i, score in enumerate(scores):
+        i += 1
+        result  += rr(score)
     return result / i
 
 # DCG (Microsoft version)
