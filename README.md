@@ -1,5 +1,5 @@
 ## About
-Evaluation_measures is a framework that implements evaluation measures for IR systems. Following algorithm are implicated.
+evaluation_measures is a framework that implements evaluation measures for IR systems. Following algorithm are implicated.
 
 * MRR (Mean Reciprocal Rank)
 
