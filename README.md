@@ -16,7 +16,10 @@ http://doi.acm.org/10.1145/1645953.1646033
 
 * session nDCG
 
+K. J ̈arvelin, S. L. Price, L. M. L. Delcambre, and M. L. Nielsen. Discounted cumulated gain based evaluation of multiple-query ir sessions. In ECIR, pages 4–15, 2008.
+
 * session ERR
+Original Methods
 
 * q-measure
 
