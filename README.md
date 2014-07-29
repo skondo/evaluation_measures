@@ -20,7 +20,7 @@ K. J ̈arvelin, S. L. Price, L. M. L. Delcambre, and M. L. Nielsen. Discounted c
 
 * session ERR
 
-Original Methods
+Our original method.
 
 * q-measure
 
