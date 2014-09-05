@@ -1,7 +1,9 @@
+# coding: utf-8
 #!/usr/bin/python
 from numpy import log2
 from operator import div, add
 from itertools import izip
+from types import FunctionType
 
 # rr
 def rr(ss):
@@ -98,6 +100,96 @@ def qmeasure(rs, arel):
     result = cummurative / num_rel
     return result
 
+
+'''
+Risk Sensitive Measure Class
+Arguments:
+    queries as List
+    your_contributed_effectiveness as FunctionType or Dict{query:value} 
+    baseline_effectiveness as FunctionType or Dict{query:value}
+    
+    As for the effectivness functions, an argument is a query and a return value is a score.
+
+Public method:
+    get_risk_measure(alfa as Float, option as String)
+        alfa is a risk-aversion parameter
+        option is a difference/ratio parameter
+'''
+class RiskSensitiveMeasure():
+    def __init__(self, queries, your_contributed_effectiveness, baseline_effectiveness):
+        self.queries = queries
+        self.your_contributed = your_contributed_effectiveness
+        self.baseline = baseline_effectiveness
+        self.__hurt_queries = []
+        self.__unchanged_queries = []
+        self.__improved_queries = []
+        self._option = 'difference' # default
+    
+    def _calc_delta(self, query):
+        ret = 0.0 # default        
+        
+        if isinstance(self.your_contributed, FunctionType) and isinstance(self.baseline, FunctionType):
+            if self._option is 'difference':
+                ret = self.your_contributed(query) - self.baseline(query)
+            else:
+                ret = self.your_contributed(query) / self.baseline(query)
+        if isinstance(self.your_contributed, dict) and isinstance(self.baseline, dict):
+            if query in self.your_contributed and query in self.baseline:
+                if self._option is 'difference':
+                    ret = self.your_contributed[query] - self.baseline[query]
+                else:
+                    ret = self.your_contributed[query] / self.baseline[query]
+        
+        return ret
+    
+    def _classify_queries(self):
+        self.__improved_queries = []
+        self.__hurt_queries = []
+        self.__unchanged_queries = []
+        
+        for query in self.queries:
+            delta = self._calc_delta(query) 
+            if delta > 0:
+                self.__improved_queries.append(query)
+            elif delta < 0:
+                self.__hurt_queries.append(query)
+            else:
+                # don't use
+                self.__unchanged_queries.append(query)
+    
+    def get_risk_measure(self, alfa, option = None):
+        improved_score = 0.0
+        hurt_score = 0.0
+        if option:
+            self._option = option
+        else:
+            self._option = 'difference'
+            
+        self._classify_queries()
+        for i_query in self.__improved_queries:
+            improved_score += self._calc_delta(i_query)
+        for h_query in self.__hurt_queries:
+            hurt_score += self._calc_delta(h_query)
+        
+        return (improved_score - (alfa + 1) * hurt_score) / float(len(self.queries))
+
+    #def get_hurt_queries(self):
+    #    return self.__hurt_queries
+    
+    #def get_improved_queries(self):
+    #    return self.__improved_queries
+    
+    #def get_unchanged_queries(self):
+    #    return self.__unchanged_queries
+    
+
+# for debug
+import random
+def get_rnd(query):
+    return random.random()
+
+
+
 if __name__ == "__main__":
 
     r = [0,1,1]
@@ -134,3 +226,21 @@ if __name__ == "__main__":
     rs = [0,0,0,0,1] + [0] * 995
     arel = [1,1,1,1,1] + [0] * 995
     print qmeasure(rs, arel)
+    
+    print '\nrisk measure'
+    q = ['aa', 'bb', 'cc', 'dd', 'ee', 'ff', 'gg']
+    contri = {'aa':1.0, 'bb':1.0, 'cc':1.3, 'dd':1.4, 'ee':1.5, 'ff':0.9, 'gg':0.8}
+    base = {'aa':2.1, 'bb':1.0, 'cc':0.1, 'dd':0.2, 'ee':0.8, 'ff':1.5, 'gg':1.1}
+    rsm = RiskSensitiveMeasure(q, contri, base)
+    
+    print rsm.get_risk_measure(1.0)
+    print rsm.get_risk_measure(1.0, "a")
+    print rsm.get_risk_measure(5.0)
+    #print rsm.get_risk_measure(5.0, "a")
+    
+    rsm2 = RiskSensitiveMeasure(q, get_rnd, get_rnd)
+    print rsm2.get_risk_measure(3.0)
+
+
+
+
