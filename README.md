@@ -27,7 +27,8 @@ Our original method.
 Tetsuya Sakai. 2004. Ranking the NTCIR systems based on multigrade relevance. In Proceedings of the 2004 international conference on Asian Information Retrieval Technology (AIRS'04), Sung Hyon Myaeng, Ming Zhou, Kam-Fai Wong, and Hong-Jiang Zhang (Eds.). Springer-Verlag, Berlin, Heidelberg, 251-262. DOI=10.1007/978-3-540-31871-2_22 
 http://dx.doi.org/10.1007/978-3-540-31871-2_22
 
-*Risk-sensitive measure
+
+* Risk-sensitive measure
 
 L. Wang, P. N. Bennet and K. C-Thompson, Robust Ranking Mpodels via Risk-Sensitive Optimazation. In Proc. of the SIGIR 2012.
 See also TREC WebTRAC 2013 http://research.microsoft.com/en-us/projects/trec-web-2013/
