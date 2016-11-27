@@ -35,7 +35,7 @@ def ndcg(r, arel, max = 10):
 
 # ERR (Expected Reciprocal Rank)
 # NOTE: max_grade should be *2*
-def err(ranking, max = 10, max_grade=3):
+def err(ranking, max = 10, max_grade=2):
     if max is None:
         max = len(ranking)
     
